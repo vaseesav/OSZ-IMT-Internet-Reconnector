@@ -23,4 +23,4 @@ Replace username and password with your school's WiFi credentials.
 
 # Contribution
 
-This project is maintained by me - Vaseesav - on GitHub. If you encounter any issues, feel free to create an issue on the project's GitHub page. Contributions are also welcome.
+This project is maintained by me - VaseesaV - on GitHub. If you encounter any issues, feel free to create an issue on the project's GitHub page. Contributions are also welcome.
