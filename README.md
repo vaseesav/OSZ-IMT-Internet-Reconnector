@@ -24,3 +24,7 @@ Replace username and password with your school's WiFi credentials.
 # Contribution
 
 This project is maintained by me - VaseesaV - on GitHub. If you encounter any issues, feel free to create an issue on the project's GitHub page. Contributions are also welcome.
+
+# Disclaimer 
+
+This script is provided for educational purposes only. The author of this script (Vaseesav on GitHub) is not responsible for any unauthorized use of this script. This script is provided as-is, and the author makes no warranties or guarantees about its functionality or security. The user assumes all responsibility for the use of this script. Use at your own risk.
