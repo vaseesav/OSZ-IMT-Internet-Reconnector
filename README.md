@@ -1,7 +1,7 @@
 
 # Automatic WiFi Reconnector
 
-This is a Python script that automatically reconnects to the OSZ IMT School WiFi network after you have used up your 1GB quota. The script automates the process, making it faster and more convenient.
+This is a Python script that automatically reconnects to the OSZ IMT School WiFi network after you have used up your 1GB quota. The script automates the process, making it faster and more convenient. This branch of the script does not chek for an actual internet connection but does always send requests to the host. That is why, the main branch is recommended. Use at your own risk.
 
 # Requirements
 
