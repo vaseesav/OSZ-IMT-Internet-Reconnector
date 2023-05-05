@@ -1,4 +1,3 @@
-import subprocess
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -21,7 +20,7 @@ class OszImtReconnector:
         # Reconnect to the internet
         while True:
             AutoReconnect(self.login_name, self.login_password).reconnect_to_internet()
-            sleep(2)
+            sleep(5)
 
 
 class DataInput:
@@ -59,32 +58,10 @@ class DataInput:
             quit(-1)
 
 
-class InternetConnectionChecker:
-    def __init__(self, server: str):
-        self.server = server
-
-    def connection_to_server(self):
-        """
-        Function which checks if a connection to a server is possible.
-        :return: boolean
-        """
-        try:
-            result = subprocess.run(['ping', '-c', '1', self.server], stdout=subprocess.PIPE)
-
-            if result.returncode == 0:
-                return True
-            else:
-                return False
-        except Exception as e:
-            print("An error occurred while trying to reach a server.", e)
-            return False
-
-
 class AutoReconnect:
     def __init__(self, login_name: str, login_password: str):
         self.username = login_name
         self.password = login_password
-        self.internet_connection_checker = InternetConnectionChecker("google.com")
 
     def reconnect_to_internet(self):
         """
@@ -96,24 +73,18 @@ class AutoReconnect:
             chrome_options.add_argument('--disable-gpu')
             driver = webdriver.Chrome(options=chrome_options)
 
-            if InternetConnectionChecker("google.com").connection_to_server():
-                print("[Reconnector]: Already connected to the internet.")
-            else:
-                driver.get("http://logoff.now/")
-                print("[Reconnector]: You lost the connection to the Internet.")
-                driver.get("https://wlan-login.oszimt.de/logon/cgi/index.cgi")
-
-                # search for the html elements.
-                button = driver.find_element(By.CLASS_NAME, "ewc_s_button")
-                name_filed = driver.find_element(By.ID, "uid")
-                pass_field = driver.find_element(By.ID, "pwd")
-
-                # Fill in the given information and click the button.
-                name_filed.send_keys(self.username)
-                pass_field.send_keys(self.password)
-                button.click()
-                sleep(1)
-                print("[Reconnector]: Connection to the internet accomplished.")
+            driver.get("http://logoff.now/")
+            print("[Reconnector]: You lost the connection to the Internet.")
+            driver.get("https://wlan-login.oszimt.de/logon/cgi/index.cgi")
+            # search for the html elements.
+            button = driver.find_element(By.CLASS_NAME, "ewc_s_button")
+            name_filed = driver.find_element(By.ID, "uid")
+            pass_field = driver.find_element(By.ID, "pwd")
+            # Fill in the given information and click the button.
+            name_filed.send_keys(self.username)
+            pass_field.send_keys(self.password)
+            button.click()
+            print("[Reconnector]: Connection to the internet accomplished.")
         except KeyboardInterrupt as ke:
             print("Keyboard Interrupt the script will be stopped.", ke)
             quit(-1)
